@@ -250,68 +250,6 @@ const MainPage = () => {
         </div>
       </section>
 
-      <section className="section page-shell pricing-section">
-        <div className="section-heading">
-          <div>
-            <div className="eyebrow">স্বচ্ছ মূল্য, নিশ্চিন্ত মন</div>
-            <h2>
-              আপনার জন্য
-              <br />
-              <em>সঠিক প্যাকেজ</em>
-            </h2>
-          </div>
-          <p>
-            কোনো গোপন চার্জ নেই। প্রথম সেশনের পর আপনার প্রয়োজন অনুযায়ী প্যাকেজ
-            বেছে নিন।
-          </p>
-        </div>
-        <div className="pricing-grid">
-          <div className="price-card">
-            <span>একক সেশন</span>
-            <strong>
-              ৳ ১,২০০ <small>/ সেশন</small>
-            </strong>
-            <p>প্রথমবার আসছেন বা নির্দিষ্ট কোনো সমস্যার জন্য।</p>
-            <ul>
-              <li>
-                <Check size={15} /> ৪৫ মিনিটের থেরাপি
-              </li>
-              <li>
-                <Check size={15} /> প্রাথমিক মূল্যায়ন
-              </li>
-              <li>
-                <Check size={15} /> পরবর্তী যত্নের গাইড
-              </li>
-            </ul>
-            <a href="#booking" className="button button-outline">
-              সেশন বুক করুন <ArrowUpRight size={16} />
-            </a>
-          </div>
-          <div className="price-card price-featured">
-            <span className="popular-tag">সবচেয়ে জনপ্রিয়</span>
-            <span>সুস্থতা প্যাকেজ</span>
-            <strong>
-              ৳ ৪,৫০০ <small>/ ৪ সেশন</small>
-            </strong>
-            <p>দীর্ঘস্থায়ী সমস্যা ও নিয়মিত যত্নের জন্য।</p>
-            <ul>
-              <li>
-                <Check size={15} /> ৪৫ মিনিটের ৪টি থেরাপি
-              </li>
-              <li>
-                <Check size={15} /> ব্যক্তিগত কেয়ার প্ল্যান
-              </li>
-              <li>
-                <Check size={15} /> WhatsApp সাপোর্ট
-              </li>
-            </ul>
-            <a href="#booking" className="button button-primary">
-              প্যাকেজ বেছে নিন <ArrowUpRight size={16} />
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section id="booking" className="booking-section">
         <div className="page-shell booking-grid">
           <div className="booking-intro">
