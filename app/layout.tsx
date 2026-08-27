@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "আশরাফ কাপিং এন্ড আকুপ্রেসার থেরাপি সেন্টার",
   description:
     "ওষুধ ও সার্জারি ছাড়াই দীর্ঘস্থায়ী ব্যথা, মাইগ্রেন, অনিদ্রা ও স্ট্রেসের জন্য প্রমাণিত অ্যাকুপ্রেসার থেরাপি।",
-  generator: "v0.app",
+  generator: "RIFAT ISLAM REYAN -- https://www.linkedin.com/in/i-reyannn",
 };
 
 export const viewport: Viewport = {
