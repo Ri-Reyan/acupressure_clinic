@@ -78,7 +78,7 @@ const MainPage = () => {
             </span>
           </div>
           <div className="trust-stat">
-            <span className="stat-number">৩৫০০+</span>
+            <span className="stat-number">২ লাখ+</span>
             <span>
               রোগী পেয়েছেন
               <br />
@@ -329,14 +329,14 @@ const MainPage = () => {
               <Phone size={18} />
               <span>
                 <small>সরাসরি কথা বলুন</small>
-                <b>০১৭০০-০০০০০০</b>
+                <b>০১৭১৬-৩১৭৯৮৬</b>
               </span>
             </div>
             <div className="contact-line">
               <Clock3 size={18} />
               <span>
                 <small>খোলা থাকে</small>
-                <b>শনি–বৃহস্পতি · সকাল ৯টা–রাত ৮টা</b>
+                <b>শনি–বৃহস্পতি · সকাল ১০ টা–রাত ১০ টা</b>
               </span>
             </div>
           </div>
@@ -410,7 +410,7 @@ const MainPage = () => {
         <div className="page-shell location-grid">
           <div className="map-placeholder">
             <MapPin size={26} />
-            <span>গুলশান ১, ঢাকা</span>
+            <span>টাউনহল মোহাম্মদপুর, ঢাকা</span>
           </div>
           <div>
             <div className="eyebrow">আমাদের কাছে আসুন</div>
@@ -420,9 +420,9 @@ const MainPage = () => {
               <em>ছোট ঠিকানা।</em>
             </h2>
             <p>
-              হাউস ১২, রোড ৪৬
+              রুম নং-০২, শহীদপার্ক জামে মসজিদ
               <br />
-              গুলশান ১, ঢাকা ১২১২, বাংলাদেশ
+              টাউনহল মোহাম্মদপুর, ঢাকা ১২১২, বাংলাদেশ
             </p>
             <a
               className="text-link"

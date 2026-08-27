@@ -36,7 +36,7 @@ export default function Hero() {
             <div className="stars">
               <Star size={14} fill="currentColor" /> <b>৪.৯/৫</b>
             </div>
-            <small>৩৫০+ সন্তুষ্ট রোগী</small>
+            <small>২ লাখ+ সন্তুষ্ট রোগী</small>
           </div>
         </div>
       </div>
