@@ -1,53 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import Navbar from "./_components/Navbar";
+import Hero from "./_components/Hero";
+import Services from "./_components/Services";
 import {
   ArrowUpRight,
   BadgeCheck,
-  CalendarDays,
   Check,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Clock3,
   HeartPulse,
   MapPin,
-  Menu,
-  MessageCircle,
   Phone,
-  Play,
   ShieldCheck,
   Sparkles,
-  Star,
   Stethoscope,
-  X,
 } from "lucide-react";
-
-const conditions = {
-  "দীর্ঘস্থায়ী ব্যথা": {
-    intro:
-      "শরীরের যেসব ব্যথা আপনাকে প্রতিদিন থামিয়ে দেয়, সেগুলোর মূল কারণ খুঁজে চিকিৎসা করি।",
-    items: [
-      "কোমর ও পিঠের ব্যথা",
-      "ঘাড় ও কাঁধের ব্যথা",
-      "হাঁটু ও জয়েন্টের ব্যথা",
-    ],
-  },
-  "মাইগ্রেন ও ঘুম": {
-    intro:
-      "মাথাব্যথা, মাইগ্রেন ও অনিদ্রার চক্র ভেঙে শরীরকে স্বাভাবিক ছন্দে ফিরিয়ে আনি।",
-    items: [
-      "মাইগ্রেন ও মাথাব্যথা",
-      "অনিদ্রা ও অস্থির ঘুম",
-      "ঘাড় ভার ও চোখে চাপ",
-    ],
-  },
-  "স্ট্রেস ও ক্লান্তি": {
-    intro:
-      "মনের চাপ ও দীর্ঘদিনের ক্লান্তি কমিয়ে আপনার শক্তি ও মনোযোগ ফিরে পেতে সহায়তা করি।",
-    items: ["স্ট্রেস ও উদ্বেগ", "দীর্ঘস্থায়ী ক্লান্তি", "হজমের সমস্যা"],
-  },
-};
+import { usePatient } from "./context/PatientContext";
 
 const testimonials = [
   {
@@ -70,134 +40,32 @@ const testimonials = [
   },
 ];
 
-export default function Page() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeCondition, setActiveCondition] = useState("দীর্ঘস্থায়ী ব্যথা");
-  const [testimonial, setTestimonial] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
+const process = [
+  [
+    "০১",
+    "পরামর্শ ও মূল্যায়ন",
+    "আপনার শারীরিক ইতিহাস, লক্ষণ ও জীবনযাপনের ধরন মনোযোগ দিয়ে শুনি।",
+  ],
+  [
+    "০২",
+    "ব্যক্তিগত থেরাপি",
+    "বৈজ্ঞানিক প্রেসার পয়েন্ট ও আরামদায়ক টাচ থেরাপির মাধ্যমে কাজ করি।",
+  ],
+  [
+    "০৩",
+    "পরবর্তী যত্ন",
+    "থেরাপির পর আপনার জন্য সহজ লাইফস্টাইল গাইড ও প্রয়োজনীয় পরামর্শ।",
+  ],
+];
 
+const MainPage = () => {
+  const { testimonial, setTestimonial, submitted, setSubmitted } = usePatient();
   const current = testimonials[testimonial];
 
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="topbar">
-        <div className="page-shell flex items-center justify-between">
-          <span>প্রথম পরামর্শে ১৫% ছাড়</span>
-          <a href="#booking">
-            আজই আপনার সেশন বুক করুন <ArrowUpRight size={14} />
-          </a>
-        </div>
-      </div>
-      <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur-md">
-        <div className="page-shell flex h-20 items-center justify-between">
-          <a href="#top" className="brand-mark">
-            <span className="brand-icon">
-              <HeartPulse size={20} />
-            </span>
-            <span>
-              <strong>প্রাণ</strong>
-              <small>অ্যাকুপ্রেসার ক্লিনিক</small>
-            </span>
-          </a>
-          <nav
-            className="hidden items-center gap-8 md:flex"
-            aria-label="প্রধান নেভিগেশন"
-          >
-            <a href="#about">আমাদের সম্পর্কে</a>
-            <a href="#conditions">চিকিৎসা</a>
-            <a href="#process">কীভাবে কাজ করে</a>
-            <a href="#stories">রোগীর অভিজ্ঞতা</a>
-          </nav>
-          <a
-            href="#booking"
-            className="button button-primary hidden md:inline-flex"
-          >
-            অ্যাপয়েন্টমেন্ট <ArrowUpRight size={16} />
-          </a>
-          <button
-            className="md:hidden"
-            aria-label={menuOpen ? "মেনু বন্ধ করুন" : "মেনু খুলুন"}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-        {menuOpen && (
-          <nav className="mobile-menu page-shell md:hidden">
-            <a href="#about" onClick={() => setMenuOpen(false)}>
-              আমাদের সম্পর্কে
-            </a>
-            <a href="#conditions" onClick={() => setMenuOpen(false)}>
-              চিকিৎসা
-            </a>
-            <a href="#process" onClick={() => setMenuOpen(false)}>
-              কীভাবে কাজ করে
-            </a>
-            <a href="#booking" onClick={() => setMenuOpen(false)}>
-              বুকিং
-            </a>
-          </nav>
-        )}
-      </header>
-
-      <section id="top" className="hero page-shell">
-        <div className="hero-copy">
-          <div className="eyebrow">
-            <span className="eyebrow-dot" /> প্রাকৃতিক সুস্থতার নতুন ঠিকানা
-          </div>
-          <h1>
-            শরীরকে শুনুন,
-            <br />
-            <em>সুস্থতাকে বেছে নিন।</em>
-          </h1>
-          <p className="hero-lede">
-            ওষুধ ও সার্জারি ছাড়াই দীর্ঘস্থায়ী ব্যথা থেকে পান প্রাকৃতিক মুক্তি।
-            মাইগ্রেন, পিঠের ব্যথা, অনিদ্রা ও স্ট্রেস ম্যানেজমেন্টের জন্য
-            প্রমাণিত অ্যাকুপ্রেসার থেরাপি।
-          </p>
-          <div className="hero-actions">
-            <a href="#booking" className="button button-primary button-large">
-              অ্যাপয়েন্টমেন্ট বুক করুন <ArrowUpRight size={18} />
-            </a>
-            <a
-              href="https://wa.me/8801700000000"
-              className="button button-whatsapp button-large"
-            >
-              <MessageCircle size={18} /> WhatsApp-এ পরামর্শ নিন
-            </a>
-          </div>
-          <div className="hero-proof">
-            <div className="avatar-stack">
-              <span>র</span>
-              <span>ম</span>
-              <span>স</span>
-              <span>+</span>
-            </div>
-            <div>
-              <div className="stars">
-                <Star size={14} fill="currentColor" /> <b>৪.৯/৫</b>
-              </div>
-              <small>৩৫০+ সন্তুষ্ট রোগী</small>
-            </div>
-          </div>
-        </div>
-        <div className="hero-art" aria-label="শান্ত প্রকৃতির একটি ভিজ্যুয়াল">
-          <div className="art-card">
-            <span className="art-kicker">প্রতিদিনের যত্ন</span>
-            <strong>
-              ভালো থাকা
-              <br />
-              একটি অভ্যাস
-            </strong>
-            <span className="art-line" />
-            <small>শরীর, মন ও জীবনের ভারসাম্য</small>
-          </div>
-          <div className="art-orbit orbit-one" />
-          <div className="art-orbit orbit-two" />
-          <div className="leaf leaf-one" />
-          <div className="leaf leaf-two" />
-        </div>
-      </section>
+      <Navbar />
+      <Hero />
 
       <section id="about" className="trust-strip">
         <div className="page-shell trust-grid">
@@ -240,7 +108,7 @@ export default function Page() {
           <div className="portrait-frame">
             <img
               src="/placeholder-user.jpg"
-              alt="প্রাণ ক্লিনিকের প্রধান থেরাপিস্ট"
+              alt="আশরাফ কাপিং এন্ড আকুপ্রেসার থেরাপি সেন্টার ক্লিনিকের প্রধান থেরাপিস্ট"
             />
           </div>
           <div className="portrait-note">
@@ -248,8 +116,14 @@ export default function Page() {
               <Stethoscope size={18} />
             </span>
             <span>
-              <b>সায়ন্তনী দাস</b>
-              <small>প্রধান থেরাপিস্ট · রেজি. AT-2084</small>
+              <b>​এম.ডি দেলোয়ার আশরাফ</b>
+              <small>
+                আকুপ্রেসার বিশেষজ্ঞ
+                <br />
+                বিহার আকুপ্রেসার ইয়োগা কলেজ (বি.এ.ওয়াই.সি), পাটনা, ভারত <br />
+                সহকারী আকুপ্রেসার থেরাপিস্ট ও মেম্বার অফ বাংলাদেশ আকুপ্রেসার
+                ফাউন্ডেশন প্রশিক্ষক কাপিং এন্ড আকুপ্রেসার থেরাপি
+              </small>
             </span>
           </div>
         </div>
@@ -261,10 +135,10 @@ export default function Page() {
             <em>বোঝার চেষ্টা করি।</em>
           </h2>
           <p>
-            প্রাণ অ্যাকুপ্রেসার ক্লিনিকে আমরা শুধু উপসর্গ নয়, আপনার জীবনযাপনের
-            পুরো চিত্রটি দেখি। প্রাচীন চীনা প্রেসার পয়েন্ট থেরাপির সাথে আধুনিক
-            অ্যানাটমি ও যত্নশীল কাউন্সেলিং মিলিয়ে তৈরি হয় আপনার ব্যক্তিগত
-            চিকিৎসা পরিকল্পনা।
+            আশরাফ কাপিং এন্ড আকুপ্রেসার থেরাপি সেন্টার ক্লিনিকে আমরা শুধু উপসর্গ
+            নয়, আপনার জীবনযাপনের পুরো চিত্রটি দেখি। প্রাচীন চীনা প্রেসার
+            পয়েন্ট থেরাপির সাথে আধুনিক অ্যানাটমি ও যত্নশীল কাউন্সেলিং মিলিয়ে
+            তৈরি হয় আপনার ব্যক্তিগত চিকিৎসা পরিকল্পনা।
           </p>
           <div className="specialties">
             <span>
@@ -283,64 +157,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="conditions" className="section section-soft">
-        <div className="page-shell">
-          <div className="section-heading">
-            <div>
-              <div className="eyebrow">আপনার জন্য সঠিক যত্ন</div>
-              <h2>
-                যে সমস্যাগুলোতে
-                <br />
-                <em>সহায়তা করতে পারি</em>
-              </h2>
-            </div>
-            <p>
-              প্রতিটি শরীর আলাদা। তাই আপনার লক্ষণ, রুটিন ও প্রয়োজন বুঝে আমরা
-              তৈরি করি ব্যক্তিগত চিকিৎসা পরিকল্পনা।
-            </p>
-          </div>
-          <div className="condition-tabs" role="tablist">
-            {Object.keys(conditions).map((condition) => (
-              <button
-                key={condition}
-                role="tab"
-                aria-selected={activeCondition === condition}
-                className={activeCondition === condition ? "active" : ""}
-                onClick={() => setActiveCondition(condition)}
-              >
-                {condition}
-                <ChevronDown size={15} />
-              </button>
-            ))}
-          </div>
-          <div className="condition-panel">
-            <div>
-              <span className="panel-number">
-                ০{Object.keys(conditions).indexOf(activeCondition) + 1}
-              </span>
-              <h3>{activeCondition}</h3>
-              <p>
-                {conditions[activeCondition as keyof typeof conditions].intro}
-              </p>
-            </div>
-            <ul>
-              {conditions[activeCondition as keyof typeof conditions].items.map(
-                (item) => (
-                  <li key={item}>
-                    <span>
-                      <Check size={15} />
-                    </span>
-                    {item}
-                  </li>
-                ),
-              )}
-            </ul>
-            <div className="panel-icon">
-              <HeartPulse size={34} />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Services />
 
       <section id="process" className="section page-shell">
         <div className="center-heading">
@@ -352,23 +169,7 @@ export default function Page() {
           </h2>
         </div>
         <div className="process-grid">
-          {[
-            [
-              "০১",
-              "পরামর্শ ও মূল্যায়ন",
-              "আপনার শারীরিক ইতিহাস, লক্ষণ ও জীবনযাপনের ধরন মনোযোগ দিয়ে শুনি।",
-            ],
-            [
-              "০২",
-              "ব্যক্তিগত থেরাপি",
-              "বৈজ্ঞানিক প্রেসার পয়েন্ট ও আরামদায়ক টাচ থেরাপির মাধ্যমে কাজ করি।",
-            ],
-            [
-              "০৩",
-              "পরবর্তী যত্ন",
-              "থেরাপির পর আপনার জন্য সহজ লাইফস্টাইল গাইড ও প্রয়োজনীয় পরামর্শ।",
-            ],
-          ].map(([num, title, desc]) => (
+          {process.map(([num, title, desc]) => (
             <div className="process-card" key={num}>
               <span className="process-num">{num}</span>
               <Sparkles size={23} />
@@ -399,7 +200,7 @@ export default function Page() {
               <em>অনুভব করুন।</em>
             </h2>
             <p>
-              আমাদের প্রতিটি রোগীর গল্প আলাদা। তবে লক্ষ্য একটাই—ব্যথামুক্ত,
+              আমাদের প্রতিটি রোগীর গল্প আলাদা। তবে লক্ষ্য একটাই—রোগমুক্ত,
               ভারসাম্যপূর্ণ জীবন।
             </p>
             <div className="review-score">
@@ -605,7 +406,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="location-section">
+      <section id="location" className="location-section">
         <div className="page-shell location-grid">
           <div className="map-placeholder">
             <MapPin size={26} />
@@ -641,8 +442,8 @@ export default function Page() {
               <HeartPulse size={20} />
             </span>
             <span>
-              <strong>প্রাণ</strong>
-              <small>অ্যাকুপ্রেসার ক্লিনিক</small>
+              <strong>আশরাফ কাপিং এন্ড আকুপ্রেসার থেরাপি সেন্টার</strong>
+              <small>ক্লিনিক</small>
             </span>
           </a>
           <p>প্রাকৃতিক যত্নে, প্রতিদিন একটু ভালো থাকা।</p>
@@ -653,10 +454,12 @@ export default function Page() {
           </div>
         </div>
         <div className="page-shell copyright">
-          <span>© ২০২৪ প্রাণ অ্যাকুপ্রেসার ক্লিনিক</span>
+          <span>© ২০২৪ আশরাফ কাপিং এন্ড আকুপ্রেসার থেরাপি সেন্টার</span>
           <span>স্বাস্থ্যসেবা · গোপনীয়তা</span>
         </div>
       </footer>
     </main>
   );
-}
+};
+
+export default MainPage;
